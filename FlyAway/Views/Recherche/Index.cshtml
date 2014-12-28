@@ -25,7 +25,7 @@
     List<SelectListItem> recu = new List<SelectListItem>();
     foreach (var i in @test)
     {
-        recu.Add(new SelectListItem { Text = @i.Value, Value = @i.Key });
+        recu.Add(new SelectListItem { Text = @i.Value+","+@i.Key, Value = @i.Key });
     }
         foreach(var t in @test)
         {
@@ -33,15 +33,7 @@
         }
         
         @Html.ListBox("myListBox", recu);
-
-    /*if (test != null) { 
-    foreach (var p in @test)
-    {
-        <p> this is , @p.Key </p>
-        <p>there is , @p.Value</p>
     
-    }*/
-
 }
     
 
@@ -52,13 +44,13 @@
     <h2>Veuillez choisir votre réservation</h2>
     <hr />
 
-    @jsonReader.ReadDictionnary("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+    @jsonReader.ReadDictionnary("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
 
     <div class="form-group">
         @Html.Label("Depart", htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="col-md-6">
-           @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+           @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
         </div>
     </div>
 
@@ -66,7 +58,7 @@
         @Html.Label("Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="col-md-6">
-            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
         </div>
     </div>
 
@@ -102,6 +94,7 @@
             <input type="submit" value="Search" class="btn btn-default" />
         </div>
     </div>
+    Selected  : @ViewBag.
 
 </div>
 

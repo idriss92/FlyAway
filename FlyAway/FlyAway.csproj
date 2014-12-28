@@ -58,6 +58,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,6 +161,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AeroportOfficiel.cs">
+      <DependentUpon>FlyAwayModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -171,18 +176,45 @@
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VolController.cs" />
+    <Compile Include="FlyAwayModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlyAwayModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FlyAwayModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlyAwayModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FlyAwayModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlyAwayModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="CodeTrash\JSon.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AeroportOfficiel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\RechercheModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\VolModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservations.cs">
+      <DependentUpon>FlyAwayModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Vols.cs">
+      <DependentUpon>FlyAwayModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FlyAwayDb.mdf" />
+    <Content Include="App_Data\FlyAwayDb_log.ldf">
+      <DependentUpon>FlyAwayDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -205,6 +237,23 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="DataCountry\AeroportOfficiel.json" />
+    <EntityDeploy Include="FlyAwayModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FlyAwayModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="FlyAwayModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlyAwayModel.edmx</DependentUpon>
+      <LastGenOutput>FlyAwayModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FlyAwayModel.edmx.diagram">
+      <DependentUpon>FlyAwayModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="FlyAwayModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlyAwayModel.edmx</DependentUpon>
+      <LastGenOutput>FlyAwayModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -327,14 +376,16 @@
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Recherche\AeroportCodeCountry.json" />
+    <Content Include="Views\Recherche\AeroportOfficiel.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

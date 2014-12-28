@@ -44,5 +44,6 @@ namespace FlyAway.Models
     {
         public DbSet<Vol> Vol { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<AeroportOfficiel> AeroportOfficiel { get; set; }
     }
 }

@@ -6,14 +6,15 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Web.Mvc;
-
+using FlyAway.Models;
 
 namespace FlyAway.CodeToUse
 {
+
     public class UseJson
     {
         Dictionary<string, string> rendu;
-
+        //FlyAwayDbEntities entities = new FlyAwayDbEntities();
         public UseJson()
         {
             rendu = new Dictionary<string, string>();
@@ -27,19 +28,32 @@ namespace FlyAway.CodeToUse
             JsonSerializer se = new JsonSerializer();
             JObject parseDat = (JObject)se.Deserialize(reder);
 
-            foreach (var item in parseDat["liste"])
+            foreach (var item in parseDat["aeroports"])
             {
-                string a = item["code"].ToString();
-                string b = item["pays"].ToString();
+
+                string a = item["pays"].ToString();
+                string b = item["aeroport"].ToString();
+                string c = item["ville"].ToString();
+               // using (FlyAwayDbEntities entities = new FlyAwayDbEntities())
+                //{
+                    //AeroportOfficiel aero = new AeroportOfficiel(a,b,c);//new AeroportOfficiel(a, b, c);
+                    //entities.AeroportOfficiel.Add(aero);
+                    //entities.SaveChanges();
+                //}
+                
 
                 try
                 {
-                    rendu.Add(item["code"].ToString(), item["pays"].ToString());
+                    rendu.Add(a,b+"("+c+")");
                 }
-                catch (Exception e) { }
+                catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                }
             }
             return rendu;
         }
+
+
 
         public IHtmlString ReadDictionnary(string file)
         {
