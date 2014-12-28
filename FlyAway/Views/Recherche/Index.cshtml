@@ -1,0 +1,107 @@
+﻿@using FlyAway.CodeToUse
+@{
+    ViewBag.Title = "Index";
+    var jsonReader = new UseJson();
+    Dictionary<string, string> tst = new Dictionary<string, string>();
+    
+}
+
+
+<!-- jQuery UI CSS Reference -->
+
+
+
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<h2>Index</h2>
+<h3>@ViewBag.Message</h3>
+
+@helper Ok(string chemin) { 
+    FlyAway.CodeToUse.UseJson js = new UseJson();
+
+ 
+    var test = js.ReadJsonFile(@chemin);
+
+    List<SelectListItem> recu = new List<SelectListItem>();
+    foreach (var i in @test)
+    {
+        recu.Add(new SelectListItem { Text = @i.Value, Value = @i.Key });
+    }
+        foreach(var t in @test)
+        {
+            //recu.Add(@t.Value);
+        }
+        
+        @Html.ListBox("myListBox", recu);
+
+    /*if (test != null) { 
+    foreach (var p in @test)
+    {
+        <p> this is , @p.Key </p>
+        <p>there is , @p.Value</p>
+    
+    }*/
+
+}
+    
+
+
+
+
+<div class="form-horizontal">
+    <h2>Veuillez choisir votre réservation</h2>
+    <hr />
+
+    @jsonReader.ReadDictionnary("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+
+    <div class="form-group">
+        @Html.Label("Depart", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-6">
+           @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-6">
+            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportCodeCountry.json")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Date arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-6">
+            @Html.TextBox("DateArrivee")
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Date départ", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-6">
+
+            @Html.TextBox("databox", "", new { @class="datefield"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Adulte(s)", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-6">
+            @Html.Editor("Adulte")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,4 @@
+﻿$(function () {
+    
+    $('.datefield').datepicker('show');
+});
