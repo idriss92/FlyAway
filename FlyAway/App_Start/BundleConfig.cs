@@ -27,6 +27,12 @@ namespace FlyAway
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+                     "~/Scripts/bootstrap-datepicker.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+          "~/Content/datepicker.css"));
+
             // Définissez EnableOptimizations sur False pour le débogage. Pour plus d'informations,
             // visitez http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

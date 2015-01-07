@@ -17,7 +17,7 @@ namespace FlyAway.Controllers
         // GET: Reservations
         public ActionResult Index()
         {
-            return View(db.Reservation.ToList());
+            return View(db.Reservations.ToList());
         }
 
         // GET: Reservations/Details/5
@@ -27,7 +27,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservation.Find(id);
+            Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace FlyAway.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix,NombreAdultes")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix,NombreAdultes")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
-                db.Reservation.Add(reservation);
+                db.Reservations.Add(reservation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservation.Find(id);
+            Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservation.Find(id);
+            Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace FlyAway.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservation.Find(id);
-            db.Reservation.Remove(reservation);
+            Reservation reservation = db.Reservations.Find(id);
+            db.Reservations.Remove(reservation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

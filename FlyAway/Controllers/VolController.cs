@@ -17,7 +17,7 @@ namespace FlyAway.Controllers
         // GET: Vol
         public ActionResult Index()
         {
-            return View(db.Vol.ToList());
+            return View(db.Vols.ToList());
         }
 
         // GET: Vol/Details/5
@@ -27,7 +27,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vol.Find(id);
+            Vol vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace FlyAway.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Vol.Add(vol);
+                db.Vols.Add(vol);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vol.Find(id);
+            Vol vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vol.Find(id);
+            Vol vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace FlyAway.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vol vol = db.Vol.Find(id);
-            db.Vol.Remove(vol);
+            Vol vol = db.Vols.Find(id);
+            db.Vols.Remove(vol);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

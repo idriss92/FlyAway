@@ -3,39 +3,38 @@
     ViewBag.Title = "Index";
     var jsonReader = new UseJson();
     Dictionary<string, string> tst = new Dictionary<string, string>();
-    
+
+}
+
+@section css {
+    @Scripts.Render("~/Content/datepicker")
 }
 
 
-<!-- jQuery UI CSS Reference -->
-
-
-
-<script src="~/Scripts/jquery-2.1.1.js"></script>
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
 <h2>Index</h2>
 <h3>@ViewBag.Message</h3>
 
-@helper Ok(string chemin) { 
+@helper Ok(string chemin)
+{
     FlyAway.CodeToUse.UseJson js = new UseJson();
 
- 
+
     var test = js.ReadJsonFile(@chemin);
 
     List<SelectListItem> recu = new List<SelectListItem>();
     foreach (var i in @test)
     {
-        recu.Add(new SelectListItem { Text = @i.Value+","+@i.Key, Value = @i.Key });
+        recu.Add(new SelectListItem { Text = @i.Value + "," + @i.Key, Value = @i.Key });
     }
-        foreach(var t in @test)
-        {
-            //recu.Add(@t.Value);
-        }
-        
-        @Html.ListBox("myListBox", recu);
-    
+    foreach (var t in @test)
+    {
+        //recu.Add(@t.Value);
+    }
+
+    @Html.ListBox("myListBox", recu);
+
 }
-    
+
 
 
 
@@ -46,55 +45,53 @@
 
     @jsonReader.ReadDictionnary("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
 
-    <div class="form-group">
-        @Html.Label("Depart", htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <div class="col-md-6">
-           @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
-        </div>
+
+    <div class="row center-block">
+        <div class="col-lg-6">@Html.Label("Départ", htmlAttributes: new { @class =""})</div>
+        <div class="col-lg-6">@Html.Label("Arrivée", htmlAttributes: new { @class = "" })</div>
     </div>
-
-    <div class="form-group">
-        @Html.Label("Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
-
-        <div class="col-md-6">
+    <div class="row center-block">
+        <div class="col-lg-6">
+            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
+        </div>
+        <div class="col-lg-6">
             @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.Label("Date arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
-
-        <div class="col-md-6">
-            @Html.TextBox("DateArrivee")
-
+    <div class="row center-block">
+        <div class="col-lg-6">@Html.Label("Heure Départ", htmlAttributes: new { @class = "" })</div>
+        <div class="col-lg-6">@Html.Label("Heure Arrivée", htmlAttributes: new { @class = "" })</div>
+    </div>
+    <div class="row center-block">
+        <div class="col-lg-6" >
+           <input class="datepicker control-label" data-date-format="mm/dd/yyyy" />
+        </div>
+        <div class="col-lg-6">
+            <input class="datepicker control-label" data-date-format="mm/dd/yyyy" />
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.Label("Date départ", htmlAttributes: new { @class = "control-label col-md-2" })
-
-        <div class="col-md-6">
-
-            @Html.TextBox("databox", "", new { @class="datefield"})
-        </div>
+    <div class="row center-block col-lg-8">
+        <input type="submit" value="Search" class="btn btn-block" />
     </div>
 
-    <div class="form-group">
-        @Html.Label("Adulte(s)", htmlAttributes: new { @class = "control-label col-md-2" })
-
-        <div class="col-md-6">
-            @Html.Editor("Adulte")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            
-            <input type="submit" value="Search" class="btn btn-default" />
-        </div>
-    </div>
-    Selected  : @ViewBag.
 
 </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datepicker")
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy',
+                startDate: '-3d'
+            })
+        });
+
+    </script>
+}
 

@@ -34,12 +34,12 @@ namespace FlyAway.CodeToUse
                 string a = item["pays"].ToString();
                 string b = item["aeroport"].ToString();
                 string c = item["ville"].ToString();
-               // using (FlyAwayDbEntities entities = new FlyAwayDbEntities())
-                //{
-                    //AeroportOfficiel aero = new AeroportOfficiel(a,b,c);//new AeroportOfficiel(a, b, c);
-                    //entities.AeroportOfficiel.Add(aero);
+                using (FlyAwayDbEntities entities = new FlyAwayDbEntities())
+                {
+                    AeroportOfficiel aero = new AeroportOfficiel(a,b,c);//new AeroportOfficiel(a, b, c);
+                    entities.AeroportOfficiel.Add(aero);
                     //entities.SaveChanges();
-                //}
+                }
                 
 
                 try

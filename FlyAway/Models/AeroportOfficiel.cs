@@ -19,6 +19,7 @@ namespace FlyAway.Models
         private string pays;
         private string aeroport;
         private string ville;
+
         public AeroportOfficiel(string pays, string aeroport, string ville)
         {
             this.pays = pays;

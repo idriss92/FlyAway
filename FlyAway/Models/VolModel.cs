@@ -42,8 +42,8 @@ namespace FlyAway.Models
 
     public class FlyAwayDb : DbContext
     {
-        public DbSet<Vol> Vol { get; set; }
-        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Vol> Vols { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<AeroportOfficiel> AeroportOfficiel { get; set; }
     }
 }
