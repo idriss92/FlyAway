@@ -12,7 +12,7 @@ namespace FlyAway.Controllers
 {
     public class VolController : Controller
     {
-        private FlyAwayDb db = new FlyAwayDb();
+        private FlyAwayDataEntities db = new FlyAwayDataEntities();
 
         // GET: Vol
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vols.Find(id);
+            Vols vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace FlyAway.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix")] Vol vol)
+        public ActionResult Create([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix,HeureDepart,HeureArrivee")] Vols vol)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vols.Find(id);
+            Vols vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace FlyAway.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix")] Vol vol)
+        public ActionResult Edit([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix,HeureDepart,HeureArrivee")] Vols vol)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace FlyAway.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vol vol = db.Vols.Find(id);
+            Vols vol = db.Vols.Find(id);
             if (vol == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace FlyAway.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vol vol = db.Vols.Find(id);
+            Vols vol = db.Vols.Find(id);
             db.Vols.Remove(vol);
             db.SaveChanges();
             return RedirectToAction("Index");

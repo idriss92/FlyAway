@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FlyAway.Models.Vol>
+﻿@model IEnumerable<FlyAway.Vols>
 
 @{
     ViewBag.Title = "Index";
@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.Arrivee)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartHeure)
+            @Html.DisplayNameFor(model => model.DateDepart)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ArriveeHeure)
+            @Html.DisplayNameFor(model => model.DateArrivee)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Distance)
@@ -29,29 +29,40 @@
         <th>
             @Html.DisplayNameFor(model => model.Prix)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeureDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeureArrivee)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html..DisplayFor(modelItem => item.Depart)
-
+            @Html.DisplayFor(modelItem => item.Depart)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Arrivee)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DepartHeure)
+            @Html.DisplayFor(modelItem => item.DateDepart)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ArriveeHeure)
+            @Html.DisplayFor(modelItem => item.DateArrivee)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Distance)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Prix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureDepart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureArrivee)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

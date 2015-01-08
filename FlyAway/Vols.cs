@@ -14,12 +14,21 @@ namespace FlyAway
     
     public partial class Vols
     {
+        public Vols()
+        {
+            this.Reservations = new HashSet<Reservations>();
+        }
+    
         public int Id { get; set; }
         public string Depart { get; set; }
         public string Arrivee { get; set; }
-        public System.DateTime DepartHeure { get; set; }
-        public System.DateTime ArriveeHeure { get; set; }
+        public System.DateTime DateDepart { get; set; }
+        public System.DateTime DateArrivee { get; set; }
         public int Distance { get; set; }
         public int Prix { get; set; }
+        public string HeureDepart { get; set; }
+        public string HeureArrivee { get; set; }
+    
+        public virtual ICollection<Reservations> Reservations { get; set; }
     }
 }

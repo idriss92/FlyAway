@@ -7,6 +7,9 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Web.Mvc;
 using FlyAway.Models;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
 namespace FlyAway.CodeToUse
 {
@@ -14,7 +17,7 @@ namespace FlyAway.CodeToUse
     public class UseJson
     {
         Dictionary<string, string> rendu;
-        //FlyAwayDbEntities entities = new FlyAwayDbEntities();
+        FlyAwayDataEntities entities = new FlyAwayDataEntities();
         public UseJson()
         {
             rendu = new Dictionary<string, string>();
@@ -27,29 +30,49 @@ namespace FlyAway.CodeToUse
             JsonTextReader reder = new JsonTextReader(re);
             JsonSerializer se = new JsonSerializer();
             JObject parseDat = (JObject)se.Deserialize(reder);
+            //int i = 1;
+            //foreach (var item in parseDat["aeroports"])
+            //{
 
-            foreach (var item in parseDat["aeroports"])
-            {
+            //    string a = item["pays"].ToString();
+            //    string c = item["aeroport"].ToString();
+            //    string b = item["ville"].ToString();
+            //    using (FlyAwayDataEntities entities = new FlyAwayDataEntities())
+            //    {
+            //        string d = "data source=SI-PC;initial catalog=FlyAwayData;integrated security=sspi";
+            //        SqlConnection connect = new SqlConnection(d);
+            //        SqlCommand cmd = new SqlCommand("InsertOfficielAeroport", connect);
+            //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //        SqlParameter pays = new SqlParameter("Pays", SqlDbType.NVarChar);
+            //        SqlParameter aeroport = new SqlParameter("Aeroport", SqlDbType.NVarChar);
+            //        SqlParameter ville = new SqlParameter("Ville", SqlDbType.NVarChar);
+            //        pays.Value = a;
+            //        aeroport.Value = c;
+            //        ville.Value = b;
+            //        cmd.Parameters.Add(pays);
+            //        cmd.Parameters.Add(aeroport);
+            //        cmd.Parameters.Add(ville);
 
-                string a = item["pays"].ToString();
-                string b = item["aeroport"].ToString();
-                string c = item["ville"].ToString();
-                using (FlyAwayDbEntities entities = new FlyAwayDbEntities())
-                {
-                    AeroportOfficiel aero = new AeroportOfficiel(a,b,c);//new AeroportOfficiel(a, b, c);
-                    entities.AeroportOfficiel.Add(aero);
-                    //entities.SaveChanges();
-                }
+            //        connect.Open();
+            //        cmd.ExecuteNonQuery();
+            //        connect.Close();
+
+            //        //FlyAway.Models.AeroportOfficiel aero = new FlyAway.Models.AeroportOfficiel(i,a, b, c);//new AeroportOfficiel(a, b, c);
+            //        //var x = (AeroportOfficiel)aero;
+            //        //entities.AeroportOfficiel.Add(x);
+            //        //entities.SaveChanges();
+            //        i++;
+            //    }
                 
 
-                try
-                {
-                    rendu.Add(a,b+"("+c+")");
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e.Message);
-                }
-            }
+            //    //try
+            //    //{
+            //    //    rendu.Add(a,b+"("+c+")");
+            //    //}
+            //    //catch (Exception e) {
+            //    //    Console.WriteLine(e.Message);
+            //    //}
+            //}
             return rendu;
         }
 

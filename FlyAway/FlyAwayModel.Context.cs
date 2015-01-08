@@ -12,11 +12,13 @@ namespace FlyAway
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class FlyAwayDbEntities : DbContext
+    public partial class FlyAwayDataEntities : DbContext
     {
-        public FlyAwayDbEntities()
-            : base("name=FlyAwayDbEntities")
+        public FlyAwayDataEntities()
+            : base("name=FlyAwayDataEntities")
         {
         }
     
@@ -28,5 +30,22 @@ namespace FlyAway
         public virtual DbSet<AeroportOfficiel> AeroportOfficiel { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Vols> Vols { get; set; }
+    
+        public virtual int InsertOfficielAeroport(string pays, string ville, string aeroport)
+        {
+            var paysParameter = pays != null ?
+                new ObjectParameter("pays", pays) :
+                new ObjectParameter("pays", typeof(string));
+    
+            var villeParameter = ville != null ?
+                new ObjectParameter("ville", ville) :
+                new ObjectParameter("ville", typeof(string));
+    
+            var aeroportParameter = aeroport != null ?
+                new ObjectParameter("aeroport", aeroport) :
+                new ObjectParameter("aeroport", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertOfficielAeroport", paysParameter, villeParameter, aeroportParameter);
+        }
     }
 }

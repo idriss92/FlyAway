@@ -11,21 +11,12 @@ namespace FlyAway
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class AeroportOfficiel
     {
-        //[Key]
         public int Id { get; set; }
         public string Pays { get; set; }
-        public string Aeroport { get; set; }
         public string Ville { get; set; }
-
-        public AeroportOfficiel(string pays, string aeroport, string ville)
-        {
-            Pays = pays;
-            Aeroport = aeroport;
-            Ville = ville;
-        }
+        public string Aeroport { get; set; }
     }
 }

@@ -4,10 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03746b9e05684da49f40c62da008b6f0" Name="Diagram1">
-        <EntityTypeShape EntityType="FlyAwayDbModel.AeroportOfficiel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlyAwayDbModel.Reservations" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlyAwayDbModel.Vols" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="0120e325ccbf405f93bed32e4ac4951b" Name="Diagram1">
+        <EntityTypeShape EntityType="FlyAwayDataModel.AeroportOfficiel" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyAwayDataModel.Reservations" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyAwayDataModel.Vols" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="FlyAwayDataModel.FK_Reservations_Reservations" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

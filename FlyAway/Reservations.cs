@@ -14,13 +14,11 @@ namespace FlyAway
     
     public partial class Reservations
     {
-        public int Id { get; set; }
-        public string Depart { get; set; }
-        public string Arrivee { get; set; }
-        public System.DateTime DepartHeure { get; set; }
-        public System.DateTime ArriveeHeure { get; set; }
-        public int Distance { get; set; }
-        public int Prix { get; set; }
-        public int NombreAdultes { get; set; }
+        public int IdReservation { get; set; }
+        public System.DateTime DateReservation { get; set; }
+        public int TarifReservation { get; set; }
+        public int IdVol { get; set; }
+    
+        public virtual Vols Vols { get; set; }
     }
 }
