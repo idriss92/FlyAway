@@ -46,7 +46,7 @@ namespace FlyAway.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Depart,Arrivee,DepartHeure,ArriveeHeure,Distance,Prix,HeureDepart,HeureArrivee")] Vols vol)
+        public ActionResult Create(Vols vol)
         {
             if (ModelState.IsValid)
             {
