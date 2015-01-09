@@ -7,14 +7,11 @@
     Dictionary<string, string> tst = new Dictionary<string, string>();
 }
 
-
-
-
 @section css {
-    @Scripts.Render("~/Content/datepicker")
-    @Scripts.Render("~/Content/timepicker")
-    @Scripts.Render("~/Content/datetimepicker")
-    @Scripts.Render("~/Content/clockpicker")
+    @Styles.Render("~/Content/datepicker")
+    @Styles.Render("~/Content/timepicker")
+    @Styles.Render("~/Content/datetimepicker")
+    @Styles.Render("~/Content/clockpicker")
 }
 <h2>Create</h2>
 
@@ -38,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Arrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Depart, @jsonReader.Retourne(), "Select")
+                @Html.DropDownListFor(model => model.Arrivee, @jsonReader.Retourne(), "Select")
                 @Html.ValidationMessageFor(model => model.Arrivee, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateDepart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control datepicker " } })
                 @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,13 +51,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateArrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateArrivee, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.DateArrivee, new { htmlAttributes = new { @class = "form-control datepicker " } })
                 @Html.ValidationMessageFor(model => model.DateArrivee, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Distance, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Distance, htmlAttributes: new { @class = "control-label col-md-2 " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Distance, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Distance, "", new { @class = "text-danger" })
@@ -78,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HeureDepart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureDepart, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                @Html.EditorFor(model => model.HeureDepart, new { htmlAttributes = new { @class = "form-control clockpicker" } })
                 @Html.ValidationMessageFor(model => model.HeureDepart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -86,7 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HeureArrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureArrivee, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                @Html.EditorFor(model => model.HeureArrivee, new { htmlAttributes = new { @class = "form-control clockpicker " } })
                 @Html.ValidationMessageFor(model => model.HeureArrivee, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -111,16 +108,15 @@
     <script type="text/javascript">
 
         $(function () {
-            $('.datepicker').datepicker({format: 'dd-mm-yyyy',startDate: '-3d'});
+            $('.datepicker').datepicker({ format: 'dd/mm/yyyy', startDate: '-3d',autoclose: true });
+            $('.datetimepicker').datetimepicker({ format: "dd MM yyyy - hh:ii" });
+            $('.timepicker').timepicker();
+            $('.clockpicker').clockpicker({
+                autoclose: true
+            });
         });
 
-        $(function () {
-            $('.datetimepicker').datetimepicker({format: "dd MM yyyy - hh:ii"});
-        });
-
-        $(function () {
-            $('clockpicker').clockpicker();
-        });
+       
     </script>
 }
 
