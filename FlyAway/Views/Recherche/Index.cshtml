@@ -1,4 +1,6 @@
-﻿@using FlyAway.CodeToUse
+﻿@model FlyAway.AeroportOfficiel
+
+@using FlyAway.CodeToUse
 @{
     ViewBag.Title = "Index";
     var jsonReader = new UseJson();
@@ -14,26 +16,7 @@
 <h2>Index</h2>
 <h3>@ViewBag.Message</h3>
 
-@helper Ok(string chemin)
-{
-    FlyAway.CodeToUse.UseJson js = new UseJson();
 
-
-    var test = js.ReadJsonFile(@chemin);
-
-    List<SelectListItem> recu = new List<SelectListItem>();
-    foreach (var i in @test)
-    {
-        recu.Add(new SelectListItem { Text = @i.Value + "," + @i.Key, Value = @i.Key });
-    }
-    foreach (var t in @test)
-    {
-        //recu.Add(@t.Value);
-    }
-
-    @Html.ListBox("myListBox", recu);
-
-}
 
 
 
@@ -53,10 +36,10 @@
     </div>
     <div class="row center-block">
         <div class="col-lg-6">
-            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
+            @Html.ListBox("MyListBox",@jsonReader.Retourne())
         </div>
         <div class="col-lg-6">
-            @Ok("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
+            @Html.ListBox("MyListBox", @jsonReader.Retourne())
         </div>
     </div>
 

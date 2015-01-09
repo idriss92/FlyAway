@@ -1,13 +1,20 @@
 ﻿@model FlyAway.Vols
 
-
+@using FlyAway.CodeToUse
 @{
     ViewBag.Title = "Create";
+    var jsonReader = new UseJson();
+    Dictionary<string, string> tst = new Dictionary<string, string>();
 }
 
-@Aero Fly
+
+
+
 @section css {
     @Scripts.Render("~/Content/datepicker")
+    @Scripts.Render("~/Content/timepicker")
+    @Scripts.Render("~/Content/datetimepicker")
+    @Scripts.Render("~/Content/clockpicker")
 }
 <h2>Create</h2>
 
@@ -23,8 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Depart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.Depart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model=>model.Depart, @jsonReader.Retourne(),"Select")
                 @Html.ValidationMessageFor(model => model.Depart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Arrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Arrivee, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Depart, @jsonReader.Retourne(), "Select")
                 @Html.ValidationMessageFor(model => model.Arrivee, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateDepart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateArrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateArrivee, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateArrivee, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.DateArrivee, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -72,7 +78,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HeureDepart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureDepart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HeureDepart, new { htmlAttributes = new { @class = "form-control timepicker" } })
                 @Html.ValidationMessageFor(model => model.HeureDepart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HeureArrivee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureArrivee, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HeureArrivee, new { htmlAttributes = new { @class = "form-control timepicker" } })
                 @Html.ValidationMessageFor(model => model.HeureArrivee, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,14 +105,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/datepicker")
-    <script>
+    @Scripts.Render("~/bundles/timepicker")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/clockpicker")
+    <script type="text/javascript">
+
         $(function () {
-            $('.datepicker').datepicker({
-                format: 'mm-dd-yyyy',
-                startDate: '-3d'
-            })
+            $('.datepicker').datepicker({format: 'dd-mm-yyyy',startDate: '-3d'});
         });
 
+        $(function () {
+            $('.datetimepicker').datetimepicker({format: "dd MM yyyy - hh:ii"});
+        });
+
+        $(function () {
+            $('clockpicker').clockpicker();
+        });
     </script>
 }
 

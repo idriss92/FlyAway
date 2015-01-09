@@ -31,7 +31,26 @@ namespace FlyAway
                      "~/Scripts/bootstrap-datepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/datepicker").Include(
-          "~/Content/datepicker.css"));
+                      "~/Content/datepicker.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/timepicker").Include(
+                     "~/Scripts/bootstrap-timepicker.js"));
+
+            bundles.Add(new StyleBundle("~/Content/timepicker").Include(
+                    "~/Content/bootstrap-datepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+                     "~/Scripts/bootstrap-datetimepicker.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datetimepicker").Include(
+                    "~/Content/bootstrap-datetimepicker.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/clockpicker").Include(
+                    "~/Scripts/bootstrap-clockpicker.js"));
+
+            bundles.Add(new StyleBundle("~/Content/clockpicker").Include(
+                    "~/Content/bootstrap-clockpicker.css"));
 
             // Définissez EnableOptimizations sur False pour le débogage. Pour plus d'informations,
             // visitez http://go.microsoft.com/fwlink/?LinkId=301862

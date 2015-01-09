@@ -88,5 +88,21 @@ namespace FlyAway.CodeToUse
             }
             return MvcHtmlString.Create("");
         }
+
+
+        public List<SelectListItem> Retourne()
+        {
+            FlyAwayDataEntities db = new FlyAwayDataEntities();
+            List<SelectListItem> listSelect = new List<SelectListItem>();
+
+            foreach (var aero in db.AeroportOfficiel)
+            {
+                listSelect.Add(new SelectListItem { Text = aero.Aeroport });
+
+            }
+
+            return listSelect;
+
+        }
     }
 }
