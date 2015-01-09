@@ -1,4 +1,4 @@
-﻿@model FlyAway.AeroportOfficiel
+﻿@model IEnumerable<FlyAway.Vols>
 
 @using FlyAway.CodeToUse
 @{
@@ -9,7 +9,10 @@
 }
 
 @section css {
-    @Scripts.Render("~/Content/datepicker")
+@Styles.Render("~/Content/datepicker")
+@Styles.Render("~/Content/timepicker")
+@Styles.Render("~/Content/datetimepicker")
+@Styles.Render("~/Content/clockpicker")
 }
 
 
@@ -23,43 +26,80 @@
 
 
 <div class="form-horizontal">
-    <h2>Veuillez choisir votre réservation</h2>
+    <h2>Veuillez chercher un vol</h2>
     <hr />
 
-    @jsonReader.ReadDictionnary("C:\\DevTFS\\FlyAway\\FlyAway\\Views\\Recherche\\AeroportOfficiel.json")
+    @using (Html.BeginForm("Index","RechercheController",FormMethod.Get))
+    {
+        <p>Depart : @Html.TextBox("SearchString")           Arrivée : @Html.TextBox("search")           Date de départ : @Html.TextBox("datedepart")         Date d'arrivée : @Html.TextBox("datearrivee")          Heure de départ : @Html.TextBox("heuredepart")<br />
+        <input type="submit" value="Filter" /></p>
+    }
 
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Depart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arrivee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateArrivee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeureDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeureArrivee)
+            </th>
+            <th></th>
+        </tr>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Depart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateArrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prix)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeureDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeureArrivee)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
 
-    <div class="row center-block">
-        <div class="col-lg-6">@Html.Label("Départ", htmlAttributes: new { @class =""})</div>
-        <div class="col-lg-6">@Html.Label("Arrivée", htmlAttributes: new { @class = "" })</div>
-    </div>
-    <div class="row center-block">
-        <div class="col-lg-6">
-            @Html.ListBox("MyListBox",@jsonReader.Retourne())
-        </div>
-        <div class="col-lg-6">
-            @Html.ListBox("MyListBox", @jsonReader.Retourne())
-        </div>
-    </div>
-
-    <div class="row center-block">
-        <div class="col-lg-6">@Html.Label("Heure Départ", htmlAttributes: new { @class = "" })</div>
-        <div class="col-lg-6">@Html.Label("Heure Arrivée", htmlAttributes: new { @class = "" })</div>
-    </div>
-    <div class="row center-block">
-        <div class="col-lg-6" >
-           <input class="datepicker control-label" data-date-format="mm/dd/yyyy" />
-        </div>
-        <div class="col-lg-6">
-            <input class="datepicker control-label" data-date-format="mm/dd/yyyy" />
-        </div>
-    </div>
-
-    <div class="row center-block col-lg-8">
-        <input type="submit" value="Search" class="btn btn-block" />
-    </div>
-
+    </table>
 
 </div>
 
@@ -67,12 +107,20 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/timepicker")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/clockpicker")
+
     <script>
         $(function () {
             $('.datepicker').datepicker({
                 format: 'mm-dd-yyyy',
                 startDate: '-3d'
-            })
+            });
+
+            $('.clockpicker').clockpicker({
+                autoclose: true
+            });
         });
 
     </script>
