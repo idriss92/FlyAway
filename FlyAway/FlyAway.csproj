@@ -200,6 +200,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\RechercheModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
+    <Compile Include="Models\ResultatViewModel.cs" />
     <Compile Include="Models\VolModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservations.cs">
@@ -385,6 +386,7 @@
     <Content Include="Views\Vol\Edit.cshtml" />
     <Content Include="Views\Vol\Details.cshtml" />
     <Content Include="Views\Vol\Index.cshtml" />
+    <Content Include="Views\Recherche\Resultat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

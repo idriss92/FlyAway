@@ -22,84 +22,68 @@
 
 
 
-
-
-
 <div class="form-horizontal">
     <h2>Veuillez chercher un vol</h2>
     <hr />
+    
 
-    @using (Html.BeginForm("Index","RechercheController",FormMethod.Get))
+    @using (Html.BeginForm("Resultat", "Recherche", FormMethod.Get))
     {
-        <p>Depart : @Html.TextBox("SearchString")           Arrivée : @Html.TextBox("search")           Date de départ : @Html.TextBox("datedepart")         Date d'arrivée : @Html.TextBox("datearrivee")          Heure de départ : @Html.TextBox("heuredepart")<br />
-        <input type="submit" value="Filter" /></p>
+        <div class="form-horizontal">
+            <h4>Vols</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("searchString", @jsonReader.Retourne(), "Select", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ValidationMessage( "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("search", @jsonReader.Retourne(), "Select", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ValidationMessage( "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Date Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("datedepart", "", new { @class = "form-control datepicker " })
+                    @Html.ValidationMessage( "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Date Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("datearrivee", "", new { @class = "form-control datepicker " })
+                    @Html.ValidationMessage( "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.Label("Heure Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("heuredepart", "", new { @class = "form-control clockpicker" })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Chercher" class="btn" />
+                </div>
+            </div>
+        </div>
+        
     }
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Depart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Arrivee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateDepart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateArrivee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Distance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prix)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HeureDepart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HeureArrivee)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Depart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Arrivee)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateDepart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateArrivee)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Distance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prix)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HeureDepart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HeureArrivee)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>
 
 </div>
 
@@ -113,10 +97,7 @@
 
     <script>
         $(function () {
-            $('.datepicker').datepicker({
-                format: 'mm-dd-yyyy',
-                startDate: '-3d'
-            });
+            $('.datepicker').datepicker({ format: 'dd/mm/yyyy', startDate: '-3d', autoclose: 'true', clearBtn: true, langage: 'fr' });
 
             $('.clockpicker').clockpicker({
                 autoclose: true

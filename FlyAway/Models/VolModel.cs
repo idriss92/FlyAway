@@ -8,16 +8,18 @@ using System.Web;
 
 namespace FlyAway.Models
 {
-    //public class Vol
-    //{
+    public class VolModel
+    {
+
+        public FlyAway.Vols Vols { get; set; }
     //    //[Required]
     //    [Key]
     //    public int Id { get; set; }
     //    public string Depart { get; set; }
     //    public string  Arrivee { get; set; }
-    //    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+    ////    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
     //    public DateTime DepartHeure { get; set; }
-    //    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+    ////    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
     //    public DateTime ArriveeHeure { get; set; }
     //    public int Distance { get; set; }
     //    public int Prix { get; set; }
@@ -37,7 +39,7 @@ namespace FlyAway.Models
 
     //    }
 
-    //}
+    }
 
 
     //public class FlyAwayDb : DbContext
