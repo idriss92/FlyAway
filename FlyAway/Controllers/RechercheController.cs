@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -60,6 +61,21 @@ namespace FlyAway.Controllers
             //var po = ViewBag.Recherche;
             return View();
             
+        }
+
+        // Get: Recherche/Details/5
+        public ActionResult DetailsResultat(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vols vol = db.Vols.Find(id);
+            if (vol == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vol);
         }
     }
 }
